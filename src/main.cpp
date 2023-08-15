@@ -18,7 +18,6 @@ void setup () {
   Serial.begin(115200);  // We initialize serial connection so that we could print values from sensor.
   Serial.println("Starting...");
 
-
   #ifdef LORA_ENABLED
     loraSetup();
   #endif
