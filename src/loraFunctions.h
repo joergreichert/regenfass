@@ -30,14 +30,14 @@
 
 
 // Die LMICPP-Arduino braucht den Kram als Strings!
-constexpr char const appEui[] = "ABCABCABCABCABCA";
+constexpr char const appEui[] = "0000000000000000";
 // Device EUI in string format.
-constexpr char const devEui[] = "DEFDEFDEFDEFDEFD";
+constexpr char const devEui[] = "XXXXXXXXX";
 // Application key in string format.
 // constexpr char const appKey[] = "A346E1B12B0A15D143A67D37E28CECE5";
-constexpr char const appKey[] = "FFEEFFEEFFEEFFEEFFEEFFEEFFEEFFEE";
+constexpr char const appKey[] = "XXXXXXX";
 
-static uint8_t mydata[] = "Hello, world!";
+//static uint8_t mydata[] = "Hello, world!";
 uint8_t payload[34];
 
 // Schedule TX every this many seconds (might become longer due to duty
@@ -111,7 +111,7 @@ void loraLoop()
     }
 }
 
-void publish2TTN(void)
+void publish2TTN(uint8_t mydata[])
 {
 
     // Check if there is not a current TX/RX job running
