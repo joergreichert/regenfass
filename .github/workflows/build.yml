@@ -29,13 +29,13 @@ jobs:
         with:
           name: regenfass-${{ matrix.environment }}
           path: |
-            build_output/regenfass/*.bin
-            build_output/regenfass/*.gz
+            .pio/build/${{ matrix.environment }}/*.bin
       - uses: actions/upload-artifact@v2
         if: startsWith(github.ref, 'refs/tags/')
         with:
           name: regenfass-release
-          path: build_output/release/*.bin
+          path: |
+            .pio/build/${{ matrix.environment }}/*.bin
 
   release:
     name: Create Release
