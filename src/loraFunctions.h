@@ -32,10 +32,10 @@
 // Die LMICPP-Arduino braucht den Kram als Strings!
 constexpr char const appEui[] = "0000000000000000";
 // Device EUI in string format.
-constexpr char const devEui[] = "XXXXXXXXX";
+constexpr char const devEui[] = "70B3D57ED005E6A0";
 // Application key in string format.
 // constexpr char const appKey[] = "A346E1B12B0A15D143A67D37E28CECE5";
-constexpr char const appKey[] = "XXXXXXX";
+constexpr char const appKey[] = "19127E493776D7FB115D6A608C788B7F";
 
 //static uint8_t mydata[] = "Hello, world!";
 uint8_t payload[34];

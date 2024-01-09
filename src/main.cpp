@@ -48,20 +48,8 @@ void loop()
   float distance = -1;
 // Sensors
 #if SENSOR_HCSR04
-    distance = 40 + Sensor::HCSR04::measureDistanceCm();
-    //Sensor::HCSR04::loop();
-#endif
-
-#ifdef LORA_ENABLED
-  if (distance >= 10)
-  {
-    std::string str = std::to_string(distance);
-    uint8_t mydata[32];
-    std::copy(str.begin(), str.end(), std::begin(mydata));
-    publish2TTN(mydata);
-    distance = 0;
-  }
-  loraLoop();
+    distance = Sensor::HCSR04::measureDistanceCm();
+    Sensor::HCSR04::loop();
 #endif
 
   // Print to serial every 30 seconds
@@ -69,8 +57,20 @@ void loop()
   if (current_time - last_print_time >= 30000)
   {
     last_print_time = current_time;
-    Serial.printf("Distance: %f cm\n", distance);
-
-    //distance++;
+    if (distance > 0) 
+    {
+      Serial.printf("Distance: %f cm\n", distance);
+    }
+    #ifdef LORA_ENABLED
+      if (distance >= 10)
+      {
+        std::string str = std::to_string(distance);
+        uint8_t mydata[32];
+        std::copy(str.begin(), str.end(), std::begin(mydata));
+        publish2TTN(mydata);
+        distance = 0;
+      }
+      loraLoop();
+    #endif
   }
 }
